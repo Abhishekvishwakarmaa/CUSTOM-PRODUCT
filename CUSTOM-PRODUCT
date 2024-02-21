@@ -1,0 +1,42 @@
+<div class="page-width c-product-section">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.products] %}
+      <div class="custom-product">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image.src | img_url: '200x' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p>
+            {{ product.price }}
+            {{ shop.currency }}
+          </p>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    
+
+
+    {% schema %}
+{
+  "name": "custom-product",
+  "settings": [],
+  "blocks": [
+  {
+      "name":"product",
+      "type":"slide",
+      "settings":[
+    {
+      "type": "product",
+      "label": "Select Products",
+      "id": "products"
+    }
+   ]
+  }
+      ],
+  "presets": [
+    {
+      "name": "custom-product"
+    }
+  ]
+}
+{% endschema %}
